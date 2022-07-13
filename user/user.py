@@ -1,7 +1,9 @@
-from locust import User, task
+from locust import User, task, constant
 
 
 class MyFirstTest(User):
+    weight = 2
+    wait_time = constant(1)
 
     @task
     def launch(self):
@@ -13,6 +15,8 @@ class MyFirstTest(User):
 
 
 class MySecondTest(User):
+    weight = 2
+    wait_time = constant(1)
 
     @task
     def launch2(self):
