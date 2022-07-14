@@ -75,3 +75,4 @@ reports
 output.html
 *.csv
 *.log
+log
