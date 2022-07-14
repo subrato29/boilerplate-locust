@@ -10,11 +10,12 @@ class ValidateTaskSet(TaskSet):
         print("Get status of 200")
 
     @task
-    def get_status_of_random_user(self):
-        user = [2, 3, 4, 5, 6]
-        endpoint = "/api/users?page=" + str(random.choice(user))
-        res = self.client.get(endpoint)
-        print("HTTP status code of random user: " + str(res.status_code))
+    class MyAnotherTaskSet(TaskSet):
+        @task
+        def get_another_status(self):
+            self.client.get("/api/users/4")
+            print("Get another status of 200")
+            self.interrupt(reschedule=False)
 
 
 class MyUser(HttpUser):

@@ -8,16 +8,19 @@ class ValidateTaskSet(TaskSet):
     def get_status(self):
         self.client.get("/api/users?page=2")
         print("Get status of 200")
+        self.interrupt(reschedule=False)
+
+
+class MyAnotherTaskSet(TaskSet):
 
     @task
-    def get_status_of_random_user(self):
-        user = [2, 3, 4, 5, 6]
-        endpoint = "/api/users?page=" + str(random.choice(user))
-        res = self.client.get(endpoint)
-        print("HTTP status code of random user: " + str(res.status_code))
+    def get_another_status(self):
+        self.client.get("/api/users/4")
+        print("Get another status of 200")
+        self.interrupt(reschedule=False)
 
 
 class MyUser(HttpUser):
     host = "https://reqres.in"
-    tasks = [ValidateTaskSet]
+    tasks = [ValidateTaskSet, MyAnotherTaskSet]
     wait_time = constant(1)
