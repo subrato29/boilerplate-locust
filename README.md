@@ -1,4 +1,4 @@
-Author: Subrata Sarkar
+Author: Subrato Sarkar
 ------------------------------
 
 ```
